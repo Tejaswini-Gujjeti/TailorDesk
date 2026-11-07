@@ -1,0 +1,96 @@
+
+/* TailorDesk Login and Registration */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #f7f5fb;
+  box-sizing: border-box;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #ece7f5;
+  border-radius: 18px;
+  box-shadow: 0 12px 36px rgba(41, 33, 61, 0.08);
+  box-sizing: border-box;
+}
+
+.auth-card h1 {
+  margin: 0 0 8px;
+  color: #29213d;
+  font-size: 27px;
+}
+
+.auth-card > p {
+  color: #746d80;
+  margin: 0 0 24px;
+}
+
+.auth-card label {
+  display: block;
+  margin: 16px 0 7px;
+  color: #40364f;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid #dcd5e8;
+  border-radius: 9px;
+  font: inherit;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.auth-card input:focus {
+  border-color: #7655c9;
+  box-shadow: 0 0 0 3px rgba(118, 85, 201, 0.12);
+}
+
+.auth-card > button[type="submit"] {
+  width: 100%;
+  margin-top: 24px;
+  padding: 13px;
+  border: none;
+  border-radius: 9px;
+  background: #7655c9;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-card > button[type="submit"]:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.auth-card .auth-error {
+  margin: 14px 0 0;
+  color: #c0392b;
+  font-size: 14px;
+}
+
+.auth-card .auth-switch {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-switch button {
+  border: none;
+  background: none;
+  color: #7655c9;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}

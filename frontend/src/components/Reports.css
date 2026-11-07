@@ -1,0 +1,250 @@
+
+/* REPORTS PAGE */
+
+.reports-page {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  min-width: 0;
+}
+
+.reports-heading {
+  margin-bottom: 0;
+}
+
+.reports-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: #8872c4;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.reports-heading h1 {
+  margin: 0;
+  color: #302842;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+
+.reports-heading p {
+  margin: 9px 0 0;
+  color: #898397;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* DATE FILTER CARD */
+
+.reports-filter-card {
+  min-width: 0;
+  padding: 25px;
+  background: #fff;
+  border: 1px solid #eeeaf4;
+  border-radius: 15px;
+  box-shadow: 0 5px 22px rgba(45, 32, 72, 0.04);
+}
+
+.reports-filter-heading {
+  margin-bottom: 20px;
+}
+
+.reports-filter-heading h2 {
+  margin: 0;
+  color: #302842;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.reports-filter-heading p {
+  margin: 7px 0 0;
+  color: #898397;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.reports-date-filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.report-date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.report-date-field label {
+  color: #554b67;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.report-date-field input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 45px;
+  padding: 0 12px;
+  color: #302842;
+  background: #fbfaff;
+  border: 1px solid #eae5f3;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.report-date-field input:focus {
+  border-color: #b8a4e8;
+  box-shadow: 0 0 0 3px rgba(118, 85, 201, 0.08);
+}
+
+/* RESPONSIVE LAYOUT */
+
+@media (max-width: 600px) {
+  .reports-filter-card {
+    padding: 18px;
+  }
+
+  .reports-date-filters {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .reports-heading h1 {
+    font-size: 24px;
+  }
+}
+
+
+/* REPORT SUMMARY */
+
+.reports-results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.reports-results-heading h2 {
+  margin: 0;
+  color: #302842;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.reports-results-heading p {
+  margin: 6px 0 0;
+  color: #898397;
+  font-size: 12px;
+}
+
+.reports-loading {
+  color: #8872c4;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.reports-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.reports-summary-card {
+  min-width: 0;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid #eeeaf4;
+  border-radius: 15px;
+  box-shadow: 0 5px 22px rgba(45, 32, 72, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reports-summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(45, 32, 72, 0.07);
+}
+
+.reports-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.reports-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: #8064bd;
+  background: #f3effc;
+  border-radius: 12px;
+}
+
+.reports-card-label {
+  margin: 0 0 9px;
+  color: #898397;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.reports-summary-card h3 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #302842;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.reports-card-description {
+  margin: 10px 0 0;
+  color: #9a94a7;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.reports-error {
+  margin: 0;
+  padding: 12px 14px;
+  color: #a33b48;
+  background: #fff2f3;
+  border: 1px solid #f5d4d8;
+  border-radius: 9px;
+  font-size: 12px;
+}
+
+/* RESPONSIVE SUMMARY CARDS */
+
+@media (max-width: 600px) {
+  .reports-summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .reports-summary-card {
+    padding: 18px;
+  }
+
+  .reports-summary-card h3 {
+    font-size: 23px;
+  }
+
+  .reports-results-heading h2 {
+    font-size: 15px;
+  }
+}
