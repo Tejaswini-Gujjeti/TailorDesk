@@ -11,12 +11,9 @@ async function apiFetch(url, options = {}) {
       .split("; ")
       .find((cookie) => cookie.startsWith("csrftoken="));
 
-    if (csrfCookie) {
-      headers.set(
-        "X-CSRFToken",
-        decodeURIComponent(csrfCookie.split("=").slice(1).join("="))
-      );
-    }
+    if (csrfToken) {
+  headers.set("X-CSRFToken", csrfToken);
+}
   }
 
   return fetch(url, {
@@ -27,6 +24,8 @@ async function apiFetch(url, options = {}) {
 }
 
 
+let csrfToken = null;
+
 export async function getCsrfToken() {
   const response = await apiFetch(`${API_BASE_URL}/auth/csrf/`);
 
@@ -34,9 +33,11 @@ export async function getCsrfToken() {
     throw new Error("Failed to initialize security token.");
   }
 
+  const data = await response.json();
+  csrfToken = data.csrfToken;
+
   return true;
 }
-
 
 
 // -------------------- CUSTOMERS --------------------
