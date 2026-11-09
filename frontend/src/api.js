@@ -7,13 +7,11 @@ async function apiFetch(url, options = {}) {
   const headers = new Headers(options.headers || {});
 
   if (!["GET", "HEAD", "OPTIONS", "TRACE"].includes(method)) {
-    const csrfCookie = document.cookie
-      .split("; ")
-      .find((cookie) => cookie.startsWith("csrftoken="));
+    if (!csrfToken) {
+      await getCsrfToken();
+    }
 
-    if (csrfToken) {
-  headers.set("X-CSRFToken", csrfToken);
-}
+    headers.set("X-CSRFToken", csrfToken);
   }
 
   return fetch(url, {

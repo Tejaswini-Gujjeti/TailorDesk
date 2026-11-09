@@ -13,6 +13,7 @@ import {
   getPayments,
   getCurrentUser,
   logoutUser,
+  getCsrfToken
 } from "./api";
 
 
@@ -75,24 +76,26 @@ const [payments, setPayments] = useState([]);
     let isMounted = true;
 
     async function checkSession() {
-      try {
-        const user = await getCurrentUser();
+  try {
+    await getCsrfToken();
 
-        if (isMounted) {
-          setCurrentUser(user);
-        }
-      } catch (error) {
-        console.error("Failed to check login session:", error);
+    const user = await getCurrentUser();
 
-        if (isMounted) {
-          setCurrentUser(null);
-        }
-      } finally {
-        if (isMounted) {
-          setAuthLoading(false);
-        }
-      }
+    if (isMounted) {
+      setCurrentUser(user);
     }
+  } catch (error) {
+    console.error("Failed to check login session:", error);
+
+    if (isMounted) {
+      setCurrentUser(null);
+    }
+  } finally {
+    if (isMounted) {
+      setAuthLoading(false);
+    }
+  }
+}
 
     checkSession();
 
