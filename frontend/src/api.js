@@ -1,28 +1,45 @@
-
 const API_BASE_URL = `${import.meta.env.VITE_API_URL || "http://localhost:8000"}/api`;
 
 
+let csrfToken = null;
+
 async function apiFetch(url, options = {}) {
   const method = (options.method || "GET").toUpperCase();
-  const headers = new Headers(options.headers || {});
+  const isSafeMethod = ["GET", "HEAD", "OPTIONS", "TRACE"].includes(method);
 
-  if (!["GET", "HEAD", "OPTIONS", "TRACE"].includes(method)) {
-    if (!csrfToken) {
-      await getCsrfToken();
+  async function send() {
+    const headers = new Headers(options.headers || {});
+
+    if (!isSafeMethod) {
+      if (!csrfToken) {
+        await getCsrfToken();
+      }
+
+      headers.set("X-CSRFToken", csrfToken);
     }
 
-    headers.set("X-CSRFToken", csrfToken);
+    return fetch(url, {
+      ...options,
+      headers,
+      credentials: "include",
+    });
   }
 
-  return fetch(url, {
-    ...options,
-    headers,
-    credentials: "include",
-  });
+  let response = await send();
+
+  // Django rotates the CSRF token on login, so the cached token can go
+  // stale. If the server rejects it, fetch a fresh one and retry once.
+  if (!isSafeMethod && response.status === 403) {
+    const body = await response.clone().text();
+
+    if (body.includes("CSRF")) {
+      await getCsrfToken();
+      response = await send();
+    }
+  }
+
+  return response;
 }
-
-
-let csrfToken = null;
 
 export async function getCsrfToken() {
   const response = await apiFetch(`${API_BASE_URL}/auth/csrf/`);
@@ -318,6 +335,9 @@ export async function registerUser(userData) {
     );
   }
 
+  // Registration logs the user in, which rotates the CSRF token.
+  await getCsrfToken();
+
   return data;
 }
 
@@ -335,6 +355,9 @@ export async function loginUser(credentials) {
   if (!response.ok) {
     throw new Error(data.detail || "Login failed.");
   }
+
+  // Login rotates the CSRF token, so refresh the cached one.
+  await getCsrfToken();
 
   return data;
 }
